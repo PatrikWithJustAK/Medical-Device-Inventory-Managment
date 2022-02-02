@@ -1,0 +1,7 @@
+
+
+<form method="POST" action="{% url 'DeviceList' %}">
+    {% csrf_token %}
+    <input type='text' type="search" placeholder='Search Serial Number' name='search'></input>
+    <input class='submit bg-tertiary border rounded-lg m-2 px-2' type='submit'></input>
+</form>

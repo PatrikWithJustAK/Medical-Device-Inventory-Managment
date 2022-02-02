@@ -11,3 +11,6 @@ class ServiceCenter(models.Model):
     manager = models.ForeignKey("Profiles.Profile", verbose_name="Which manager runs this store?", on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return str(self.name)
+
+    def get_manager(self):
+        return self.manager

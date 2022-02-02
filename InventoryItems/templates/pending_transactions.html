@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+{% extends 'base.html' %}
+{% block content %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pending Transactions</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div class='grid col-span-2 grid-rows-10 gap-1 mt-4 border border-secondary bg-secondary p-2'>
+            {% for t in transactions %}
+                <div class='row-span-1 border border-text bg-tertiary bg-opacity-80 hover:bg-opacity-100 '>
+                    <div class='col-span-4'>
+                        <div class='grid grid-cols-1'>
+                            
+                                <h1 class='text-lg font-bold'>{{t.serial_number}}</h1>
+                                <div class=' flex justify-right'>
+
+                            </div>
+                            <hr>
+                            <p class='font-semibold'>
+                               Submitted by: {{t.submitter}}
+                            </p>                            
+                            <p class='font-semibold'>
+                                Submitted on: {{t.transaction_date}}
+                            </p>
+                            <p class='font-semibold'>
+                                Center: {{t.service_center}}
+                            </p>
+                            <form method="POST" action="{% url 'PendingApproval' %}">
+                                {% csrf_token %}
+                                <div class='invisible'>
+                                <input type='text' name='transaction' value={{t.transaction_id}}></input>
+                                </div>
+                                <input type="submit" class='text-left'></input>
+                            </form>
+                        </div>  
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
+{% endblock content %}

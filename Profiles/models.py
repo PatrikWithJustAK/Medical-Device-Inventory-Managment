@@ -14,3 +14,10 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user)
     
+    def get_user(self):
+        return self.user
+    
+    def get_center(self):
+        return self.home_center
+
+    

@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class='col-start-1 bg-secondary'>
-    Search Box Here
-</div>
-<div class='col-start-2 bg-tertiary col-span-full'>
-    List of Devices
+<div class='col-start-2 bg-tertiary col-span-auto'>
+        {% for device in devices %}
+            <div class='m-2 flex justify-left border rounded-lg bg-tertiary'>
+                <a href="http://127.0.0.1:8000/details/{{device.serial_number}}">
+                        {{device}}
+                </a>
+            </div>
+        {% endfor %}
 </div>
 {% endblock content %}

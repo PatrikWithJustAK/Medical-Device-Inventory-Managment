@@ -7,7 +7,6 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
@@ -32,12 +31,14 @@
     <body class='bg-primary'>
         <div class='grid grid-cols-5'>
             <div class='col-start-1 col-span-full bg-secondary border border-text'>
-                <div class='flex flex-auto justify-center m-2'>
-                    <h1 class='font-text text-xl'>
-                        Inventory Management project
-                    </h1>
-                </div>
+              <div class='col-start-3'>
+                  <div class='flex flex-auto justify-center'>
+                        {% include 'search.html' %}
+                  </div>
+              </div>
             </div>
+          
+
             {% block content %}
 
             {% endblock content %}

@@ -1,9 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class='col-start-1 bg-secondary'>
-    Search Box Here
+<div class='col-start-2 bg-tertiary col-span-3 text-center'>
+        <div>
+            <b>Serial Number:</b>
+
+            <code>{{device.serial_number}}</code>
+        </div>
+        <div>
+            <b>Equipment Type:</b>
+            <code>{{device.equipment_type}}</code>
+        </div>
+        <div>
+            <b>Software Version:</b>
+            <code>{{device.software_version}}</code>
+        </div>
+        <div>
+            <b>Customer ID:</b>
+            <code>{{device.customer_id}}</code>
+        </div>
+        <div>
+            <b>Service Center:</b>
+            <code>{{device.service_center}}</code>
+        </div>
+        <div>
+            <b>Equipment Status:</b>
+            <code>{{device.equipment_status}}</code>
+        </div>
+        <div>
+            <b>Location Status:</b>
+            <code>{{device.location_status}}</code>
+        </div>
+        <div >
+            <div class='flex justify-center'>
+                <a href="http://127.0.0.1:8000/submit/{{device.serial_number}}">
+                    <input type='submit' value="Add Transaction" class='bg-tertiary hover:bg-primary border rounded border-2 border-text'>
+                    </input>
+                </a>
+            </div>
+        </div>
 </div>
-<div class='col-start-2 bg-tertiary col-span-full'>
-    Device Details here
-</div>
+
+
 {% endblock content %}

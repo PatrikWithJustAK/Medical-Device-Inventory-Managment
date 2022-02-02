@@ -59,6 +59,9 @@ class DeviceInstance(models.Model):
     def __str__(self):
         return str(self.serial_number)
 
+    def getSerial(self):
+        return self.serial_number
+
 # Transaction is the class to describe a single service check done on a single DeviceInstance
 # This transaction shares a one-to-one relationship with a DeviceInstance, but a DeviceInstance will have many Transactions, so we access the Transactions via ForeignKey
 # To maintain regulatory compliance, the DeviceInstance objects should never be edited directly by a non-clinical employee
@@ -80,10 +83,16 @@ class Transaction(models.Model):
     software_version = models.CharField("The current version of software on this equipment", max_length=20, default="", null=True)
     serial_number = models.CharField("The Serial Number Of this Device", max_length=50, null=True)
     notes = models.TextField("Notes from this service visit", null=True)
-    service_check_date = models.DateTimeField("When Transaction was the check done?", auto_now=False, auto_now_add=False)
-    transaction_date = models.DateTimeField("When Transaction was submitted", auto_now=False, auto_now_add=False)
-
+    service_check_date =models.DateField("Date check was done MM/DD/YYYY", auto_now=False, auto_now_add=False)
+    transaction_date = models.DateTimeField("When Transaction was submitted MM/DD/YY", auto_now=False, auto_now_add=False)
+    submitter = models.ForeignKey("Profiles.Profile", verbose_name="The individual who submitted the transaction", on_delete=models.CASCADE, related_name="Submitter")
+    approver = models.ForeignKey("Profiles.Profile", verbose_name="The individual who approves the transaction", on_delete=models.CASCADE)
+    approved = models.BooleanField("Was this transaction approved by a manager?", default=False)
     def __str__(self):
         return str(self.serial_number) +  " - " + str(self.transaction_date)
+
+    def get_transaction_id(self):
+        return self.transaction_id
+
 
 

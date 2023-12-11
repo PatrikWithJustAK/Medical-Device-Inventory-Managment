@@ -2,6 +2,7 @@ from django.urls import path, include
 from .views import DeviceDetailsView, DeviceListView, TransactionDetailView, TransactionListView, PendingApprovalView, SubmitTransactionView
 
 urlpatterns = [
+    path('', DeviceListView, name="base"),
     path('list/', DeviceListView, name="DeviceList"),
     path('details/', DeviceDetailsView, name="DeviceDetail"),
     path('details/<str:serial>/', DeviceDetailsView, name="DeviceDetail"),
